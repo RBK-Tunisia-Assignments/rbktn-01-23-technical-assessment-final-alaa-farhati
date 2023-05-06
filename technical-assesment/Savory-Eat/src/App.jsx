@@ -1,10 +1,13 @@
 //the default user to update and delete is {user_Id:1,username:'testuser',email:'test@test.com',password:'password}
-import React ,{useState}from "react";
+import React, { useState } from "react";
 import "./App.css";
 import Home from "./components/Home.jsx";
-import AllRecepies from "./components/AllRecipies.jsx"
+import AllRecepies from "./components/AllRecipies.jsx";
+import Add from "./components/Add.jsx";
+import Update from "./components/update";
+
 function App() {
-const [view,setView]=useState('Home')
+  const [view, setView] = useState("Home");
   let changeView = (view) => {
     setView(view);
   };
@@ -34,14 +37,18 @@ const [view,setView]=useState('Home')
           Addrecepie
         </div>
         <div className="nav-item" active-color="red">
-          <input type="text"  />
+          <input type="text" />
           <button>search</button>
         </div>
         <span className="nav-indicator"></span>
       </nav>
-      {view === "Home" && <Home changeView={changeView}/>}
-      {view === "Allrecepies" && <AllRecepies />}
-     
+
+      {view === "Home" && <Home changeView={changeView} />}
+      {view === "Allrecepies" && (
+        <AllRecepies changeView={changeView} view={view} />
+      )}
+      {view === "Addrecepie" && <Add changeView={changeView} />}
+      {view === "update" && <Update changeView={changeView} />}
       <div></div>
     </div>
   );
